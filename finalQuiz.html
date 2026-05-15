@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("991.png");
+    background-size: cover;
+    background-position: center;
+    font-family: "Copperplate", fantasy;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(139,139,90,0.9);
+    border-radius: 15px;
+    border: #000000 solid 2px;
+    font-size: 35px;
+
+}
+h1{
+    margin-bottom: 30px;
+    text-decoration: underline
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+input{
+    padding: 10px;
+    background-color: #8b8b5a;
+    border-radius: 10px;
+}
+input::placeholder {
+    color: rgb(73, 73, 73);
+}
+button{
+    padding: 10px 20px;
+    background-color: #8b8b5a;
+    border-radius: 10px;
+    color: #000000;
+    cursor: pointer;
+    font-size: 20px;
+     font-family: "Copperplate", fantasy;
+    position: relative;
+    top: 100px;
+    width: 400px;
+    height: 75px;
+    font-size: 25px;
+}
+.jogador-info{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(139,139,90,0.9);
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+.jogador-info img{
+    width: 70px;
+    height: 70px;
+}
+.jogador-info p{
+    margin: 0;
+    font-size: 22px;
+}
+.estrelas{
+    margin-top: 30px;
+    font-size: 50px;
+    letter-spacing: 10px;
+    position: relative;
+    top: -25px;
+    
+}
+</style>
+</head>
+<body>
+    <div class="jogador-info">
+    <img id="avatarJogador" src="">
+    <p id="nomeJogador"></p>
+</div>
+<div class="container">
+    
+    <h1>Jogo CONCLUÍDO</h1>
+    
+    <div class="formulario">
+        <label for="Suapontuação">SUA PONTUAÇÃO</label>
+         <div class="estrelas">
+        ⭐ ⭐ ⭐ ⭐ ⭐ 
+    </div>
+        <label for="acertos" id="acertos"></label>
+        <label for="erros" id="erros"></label>
+    </div>
+       <button onclick="reiniciarQuiz()">TENTAR NOVAMENTE?</button>
+</div>
+  
+   </body>
+
+<script>
+
+let nome = localStorage.getItem("nomeJogador");
+let avatar = localStorage.getItem("avatarJogador");
+
+document.getElementById("nomeJogador").innerText = nome;
+document.getElementById("avatarJogador").src = avatar;
+
+
+let acertos = localStorage.getItem("acertos");
+let erros = localStorage.getItem("erros");
+
+document.getElementById("acertos").innerText = "ACERTOS: " + acertos;
+document.getElementById("erros").innerText = "ERROS: " + erros;
+
+
+function reiniciarQuiz(){
+     localStorage.setItem("acertos", 0);
+    localStorage.setItem("erros", 0);
+    window.location.href = "Pergunta1Quiz.html";
+}
+
+
+</script>
+
+</html>

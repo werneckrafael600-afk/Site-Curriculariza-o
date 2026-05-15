@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("991.png");
+    background-size: cover;
+    background-position: center;
+    font-family: "Arial", Sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.jogador-info{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(139,139,90,0.9);
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+.jogador-info img{
+    width: 70px;
+    height: 70px;
+}
+.jogador-info p{
+    margin: 0;
+    font-size: 22px;
+}
+.container{
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    top: -100px;
+     font-size: 35px;
+}
+
+h1{
+    margin-bottom: 30px;
+    font-size: 55px;
+}
+.Imagens{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+.imagem{
+    text-align: center;
+     transition: 0.3s;
+    cursor: pointer;
+}
+.imagem:hover{
+    transform: scale(1.05);
+}
+
+.correta:hover{
+    border-radius: 10px;
+    background-color: rgba(0,255,0,0.2);
+}
+
+.errada{
+    animation: erro 0.5s;
+}
+
+.sumir{
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.5s;
+}
+
+@keyframes erro{
+    0%{
+        background-color: rgba(255,0,0,0.6);
+    }
+
+    100%{
+        background-color: transparent;
+    }
+}
+.imagem img{
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+}
+.imagem p{
+    background-color: #8b8b5a;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    width: 250px;
+    font-size: 35px;
+}
+.estrelas{
+    margin-top: 30px;
+    font-size: 50px;
+    letter-spacing: 10px;
+    position: relative;
+    left: 800px;
+top: 10px;
+}
+</style>
+</head>
+<body>
+    
+<div class="jogador-info">
+    <img id="avatarJogador" src="">
+    <p id="nomeJogador"></p>
+</div>
+<div class="container">
+    <div class="estrelas">
+        ⭐ ⭐ 
+    </div>
+    <h1>QUAL DESSAS VESTIMENTAS TÍPICAS REPRESENTA BRUSQUE?</h1>
+   <div class="Imagens">
+    <div class="imagem"  onclick="errou(this)">
+        <img src="219.jpeg">
+        <p> URUBU DO FLAMENGO</p>
+    </div>
+    <div class="imagem correta" onclick="acertou()">
+        <img src="2.jpeg">
+        <p>MARRECO DA FENA</p>
+    </div>
+    <div  class="imagem"  onclick="errou(this)">
+        <img src="206.jpeg">
+        <p> ZÉ GOTINHA</p>
+    </div>
+</div>
+</div>
+    </div>
+
+<script>
+let nome = localStorage.getItem("nomeJogador");
+let avatar = localStorage.getItem("avatarJogador");
+
+document.getElementById("nomeJogador").innerText = nome;
+document.getElementById("avatarJogador").src = avatar;
+
+
+if(localStorage.getItem("acertos") === null){
+    localStorage.setItem("acertos", 0);
+}
+if(localStorage.getItem("erros") === null){
+    localStorage.setItem("erros", 0);
+}
+function acertou(){
+    let acertos = Number(localStorage.getItem("acertos"));
+    localStorage.setItem("acertos", acertos + 1);
+    window.location.href = "Pergunta5Quiz.html";
+}
+function errou(elemento){
+    let erros = Number(localStorage.getItem("erros"));
+    localStorage.setItem("erros", erros + 1);
+    elemento.classList.add("errada");
+    setTimeout(() => {
+        elemento.classList.add("sumir");
+    }, 300);
+}
+
+</script>
+</body>
+</html>
